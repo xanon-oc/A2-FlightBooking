@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { flightBookings } from "../redux/FlightBooking/action";
+import imageFrame1 from "../assets/icons/Frame.svg";
 const UserForm = () => {
   const flightBookData = useSelector((state) => state.flightBookingData);
   console.log(flightBookData);
@@ -23,7 +24,7 @@ const UserForm = () => {
       <div className="des-from">
         <p>Destination From</p>
         <div className="flex flex-row">
-          <img src="./img/icons/Frame.svg" alt="" />
+          <img src="../assets/icons/Frame.svg" alt="" />
           <select
             className="outline-none px-2 py-2 w-full"
             name="from"
@@ -45,7 +46,7 @@ const UserForm = () => {
       <div className="des-from">
         <p>Destination To</p>
         <div className="flex flex-row">
-          <img src="./img/icons/Frame.svg" alt="" />
+          <img src={imageFrame1} alt="" />
           <select
             className="outline-none px-2 py-2 w-full"
             name="to"

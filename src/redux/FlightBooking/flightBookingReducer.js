@@ -9,7 +9,7 @@ const flightBookingReducer = (state = initialState, action) => {
     case FLIGHTBOOKINGS:
       return {
         ...state,
-        ...state.flightBookingData.push(action.payload),
+        flightBookingData: [...state.flightBookingData, action.payload],
       };
     case DELETEBOOKINGS:
       return {
