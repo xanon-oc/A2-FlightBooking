@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { flightBookings } from "../redux/FlightBooking/action";
 import imageFrame1 from "../assets/icons/Frame.svg";
+import { v4 as uuidv4 } from "uuid";
 const UserForm = () => {
   const flightBookData = useSelector((state) => state.flightBookingData);
   console.log(flightBookData);
@@ -14,7 +15,9 @@ const UserForm = () => {
     const date = form.date.value;
     const guests = form.guests.value;
     const ticketClass = form.ticketClass.value;
-    const passengerData = { from, to, date, guests, ticketClass };
+    const id = uuidv4();
+
+    const passengerData = { id, from, to, date, guests, ticketClass };
     dispatch(flightBookings(passengerData));
   };
 
@@ -118,23 +121,48 @@ const UserForm = () => {
         </div>
       </div>
 
-      <button className="addCity" type="submit" id="lws-addCity">
-        <svg
-          width="15px"
-          height="15px"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="2"
-          stroke="currentColor"
+      {flightBookData.length >= 3 ? (
+        <button
+          className="text-sm addCity bg-red-600 text-white"
+          disabled
+          type="submit"
+          id="lws-addCity"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 4.5v15m7.5-7.5h-15"
-          />
-        </svg>
-        <span className="text-sm">Book</span>
-      </button>
+          <svg
+            width="15px"
+            height="15px"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg>
+          <span className="text-sm ">Book Disabled</span>
+        </button>
+      ) : (
+        <button className="text-sm addCity" type="submit" id="lws-addCity">
+          <svg
+            width="15px"
+            height="15px"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg>
+          <span className="text-sm ">Book the flight</span>
+        </button>
+      )}
     </form>
   );
 };

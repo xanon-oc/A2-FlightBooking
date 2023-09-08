@@ -14,7 +14,9 @@ const flightBookingReducer = (state = initialState, action) => {
     case DELETEBOOKINGS:
       return {
         ...state,
-        // value: action.payload,
+        flightBookingData: state.flightBookingData.filter(
+          (item) => item.id !== action.payload
+        ),
       };
 
     default:
